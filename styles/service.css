@@ -1,0 +1,271 @@
+/* solutions */
+:root {
+  --primary-color: #00ff9d;
+  --secondary-color: #00cc7a;
+  --text-color: #1f2937;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.syed-services {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+}
+
+.syed-services-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.syed-services-header:hover {
+  transform: translateY(-10px);
+}
+
+.syed-services-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  line-height: 1.2;
+}
+
+.syed-services-title span {
+  color: var(--primary-color);
+}
+
+.syed-view-all-btn {
+  display: inline-block;
+  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1.5rem, 4vw, 2rem);
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.syed-view-all-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.syed-services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 6vw, 4rem);
+}
+
+.syed-service-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+@media (min-width: 768px) {
+  .syed-service-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.syed-service-description,
+.syed-service-content {
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  aspect-ratio: 4/5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.syed-service-description {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.syed-service-content {
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+
+.syed-service-description:hover,
+.syed-service-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.syed-service-content:hover {
+  background-color: #e0f7fa;
+}
+
+.syed-service-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.syed-service-icon {
+  width: clamp(40px, 8vw, 56px);
+  height: clamp(40px, 8vw, 56px);
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.syed-service-description h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.syed-service-description p {
+  color: #4b5563;
+  margin-bottom: auto;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.8;
+}
+
+.syed-service-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  transition: transform 0.3s ease;
+}
+
+.syed-service-image:hover {
+  transform: scale(1.05);
+}
+
+.syed-graph-container {
+  flex-grow: 1;
+  min-height: 200px;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  position: relative;
+}
+
+.syed-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-top: clamp(1rem, 3vw, 1.5rem);
+  border-top: 2px solid #e5e7eb;
+  margin-top: auto;
+}
+
+.syed-metric {
+  text-align: center;
+  padding: clamp(0.75rem, 2vw, 1rem);
+}
+
+.syed-metric-value {
+  display: block;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.syed-metric-label {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* Specific height adjustments for small screens */
+@media (max-width: 480px) {
+  .syed-service-description,
+  .syed-service-content {
+      aspect-ratio: auto;
+      min-height: 500px;
+  }
+
+  .syed-graph-container {
+      min-height: 150px;
+  }
+
+  .syed-metrics {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium screens */
+@media (min-width: 481px) and (max-width: 767px) {
+  .syed-service-description,
+  .syed-service-content {
+      aspect-ratio: auto;
+      min-height: 550px;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 768px) {
+  .syed-service-description,
+  .syed-service-content {
+      height: 600px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .syed-service-description:hover,
+  .syed-service-content:hover,
+  .syed-service-image:hover {
+      transform: none;
+  }
+  
+  .syed-services-header:hover {
+      transform: none;
+  }
+}
+
+
+.nav-links {
+  padding: 10px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+}
+
+.nav-links li {
+  position: relative;
+  list-style: none;
+}
+
+/* Dropdown container */
+.r-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Dropdown items */
+.r-dropdown-content a {
+  padding: 10px;
+  display: block;
+}
+
+.r-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show dropdown on hover */
+.r-dropdown:hover .r-dropdown-content {
+  display: block;
+}
