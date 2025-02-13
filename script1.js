@@ -42,14 +42,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // graph for chart and other graph visulaztion
 
+// Wait for DOM content and Chart.js to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Shared configuration for all charts
+    // Check if Chart.js is available
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js is not loaded. Please check the script inclusion.');
+        return;
+    }
+
+    // Enhanced shared configuration
     const commonOptions = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                padding: 12,
+                displayColors: false,
+                callbacks: {
+                    label: function(context) {
+                        return `Value: ${context.parsed.y.toFixed(1)}`;
+                    }
+                }
             }
         },
         scales: {
@@ -57,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 beginAtZero: true,
                 grid: {
                     color: 'rgba(0, 0, 0, 0.1)'
+                },
+                ticks: {
+                    callback: function(value) {
+                        return value + '%';
+                    }
                 }
             },
             x: {
@@ -68,184 +90,233 @@ document.addEventListener('DOMContentLoaded', function() {
         animation: {
             duration: 2000,
             easing: 'easeInOutQuart'
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: false
         }
     };
 
-    // Initial chart setups remain the same
-    const advertisingCtx = document.getElementById('syedAdvertisingChart').getContext('2d');
-    const advertisingChart = new Chart(advertisingCtx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Performance',
-                data: [65, 75, 85, 92, 88, 95],
-                borderColor: '#00ff9d',
-                tension: 0.4,
-                fill: true,
-                backgroundColor: 'rgba(0, 255, 157, 0.1)'
-            }]
-        },
-        options: commonOptions
-    });
-
-    const marketingCtx = document.getElementById('syedMarketingChart').getContext('2d');
-    const marketingChart = new Chart(marketingCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Conversions',
-                data: [45, 55, 65, 78, 82, 88],
-                backgroundColor: '#00ff9d',
-                borderRadius: 5
-            }]
-        },
-        options: commonOptions
-    });
-
-    const leadsCtx = document.getElementById('syedLeadsChart').getContext('2d');
-    const leadsChart = new Chart(leadsCtx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Leads Generated',
-                data: [35, 45, 55, 65, 75, 85],
-                borderColor: '#00ff9d',
-                backgroundColor: 'rgba(0, 255, 157, 0.2)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: commonOptions
-    });
-
-    const dataCtx = document.getElementById('syedDataChart').getContext('2d');
-    const dataChart = new Chart(dataCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Processed', 'Pending', 'Failed'],
-            datasets: [{
-                data: [75, 20, 5],
-                backgroundColor: [
-                    '#00ff9d',
-                    '#00cc7a',
-                    '#009959'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        padding: 20
+    // Chart initialization with error handling
+    const charts = {};
+    
+    try {
+        // Advertising Chart
+        const advertisingCtx = document.getElementById('syedAdvertisingChart')?.getContext('2d');
+        if (advertisingCtx) {
+            charts.advertising = new Chart(advertisingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Performance',
+                        data: [65, 75, 85, 92, 88, 95],
+                        borderColor: '#00ff9d',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(0, 255, 157, 0.1)'
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
                     }
                 }
-            },
-            animation: {
-                duration: 2000,
-                easing: 'easeInOutQuart'
-            }
+            });
         }
-    });
 
-    // New function to generate wave-like data with overall upward trend
+        // Marketing Chart
+        const marketingCtx = document.getElementById('syedMarketingChart')?.getContext('2d');
+        if (marketingCtx) {
+            charts.marketing = new Chart(marketingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Conversions',
+                        data: [45, 55, 65, 78, 82, 88],
+                        backgroundColor: '#00ff9d',
+                        borderRadius: 5,
+                        hoverBackgroundColor: '#00cc7a'
+                    }]
+                },
+                options: commonOptions
+            });
+        }
+
+        // Leads Chart
+        const leadsCtx = document.getElementById('syedLeadsChart')?.getContext('2d');
+        if (leadsCtx) {
+            charts.leads = new Chart(leadsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Leads Generated',
+                        data: [35, 45, 55, 65, 75, 85],
+                        borderColor: '#00ff9d',
+                        backgroundColor: 'rgba(0, 255, 157, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: commonOptions
+            });
+        }
+
+        // Data Chart
+        const dataCtx = document.getElementById('syedDataChart')?.getContext('2d');
+        if (dataCtx) {
+            charts.data = new Chart(dataCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Processed', 'Pending', 'Failed'],
+                    datasets: [{
+                        data: [75, 20, 5],
+                        backgroundColor: [
+                            '#00ff9d',
+                            '#00cc7a',
+                            '#009959'
+                        ],
+                        hoverBackgroundColor: [
+                            '#00e88d',
+                            '#00b86e',
+                            '#008549'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true
+                    }
+                }
+            });
+        }
+
+    } catch (error) {
+        console.error('Error initializing charts:', error);
+    }
+
+    // Enhanced wave data generation
     function generateWaveData(currentData, baselineIncrease = 0.5) {
+        const timestamp = Date.now() / 1000;
         return currentData.map((value, index) => {
-            // Calculate wave effect
-            const wave = Math.sin(Date.now() / 1000 + index) * 5; // Wave amplitude of 5
-            
-            // Add small random variation
+            const wave = Math.sin(timestamp * 0.5 + index) * 5;
             const noise = (Math.random() - 0.5) * 2;
-            
-            // Combine baseline increase, wave effect, and noise
             let newValue = value + baselineIncrease + wave + noise;
-            
-            // Ensure values stay within reasonable bounds
-            newValue = Math.max(newValue, value - 10); // Don't decrease too much
-            newValue = Math.min(newValue, 100); // Cap at 100
-            newValue = Math.max(newValue, 0); // Keep above 0
-            
-            return newValue;
+            return Math.min(Math.max(newValue, value - 10), 100);
         });
     }
 
-    // Function to update chart data with animation
+    // Enhanced chart update function
     function updateChartData(chart, newData) {
-        chart.data.datasets[0].data = newData;
-        chart.update('active');
+        if (chart && chart.data && chart.data.datasets) {
+            chart.data.datasets[0].data = newData;
+            chart.update('active');
+        }
     }
 
-    // Modified auto-update function with wave pattern
+    // Enhanced auto-update function
     function startAutoUpdate() {
         let updateCount = 0;
         
-        setInterval(() => {
-            updateCount++;
-            
-            // Calculate baseline increase based on update count
-            const baselineIncrease = Math.max(0.5 - (updateCount * 0.01), 0.1);
-            
-            // Generate new wave-like data for each chart
-            const newAdvertisingData = generateWaveData(advertisingChart.data.datasets[0].data, baselineIncrease);
-            const newMarketingData = generateWaveData(marketingChart.data.datasets[0].data, baselineIncrease);
-            const newLeadsData = generateWaveData(leadsChart.data.datasets[0].data, baselineIncrease);
-            
-            // Special handling for doughnut chart
-            const newDataSolutionsData = [
-                Math.min(75 + Math.sin(Date.now() / 1000) * 5, 85),
-                Math.max(20 + Math.sin(Date.now() / 1000) * 3, 10),
-                Math.max(5 + Math.sin(Date.now() / 1000) * 2, 5)
-            ];
-
-            // Update each chart with new data
-            updateChartData(advertisingChart, newAdvertisingData);
-            updateChartData(marketingChart, newMarketingData);
-            updateChartData(leadsChart, newLeadsData);
-            updateChartData(dataChart, newDataSolutionsData);
-        }, 2000); // Update every 2 seconds
+        const updateInterval = setInterval(() => {
+            try {
+                updateCount++;
+                const baselineIncrease = Math.max(0.3 - (updateCount * 0.005), 0.1);
+                
+                // Update each chart if it exists
+                Object.entries(charts).forEach(([type, chart]) => {
+                    if (type === 'data') {
+                        const newData = [
+                            Math.min(75 + Math.sin(Date.now() / 2000) * 3, 85),
+                            Math.max(20 + Math.sin(Date.now() / 2000) * 2, 10),
+                            Math.max(5 + Math.sin(Date.now() / 2000), 5)
+                        ];
+                        updateChartData(chart, newData);
+                    } else {
+                        const newData = generateWaveData(chart.data.datasets[0].data, baselineIncrease);
+                        updateChartData(chart, newData);
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating charts:', error);
+                clearInterval(updateInterval);
+            }
+        }, 2000);
     }
 
-    // Start automatic updates
-    startAutoUpdate();
-
-    // Keep existing scroll animation
-    const cards = document.querySelectorAll('[data-aos]');
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('aos-animate');
-            }
-        });
-    }, observerOptions);
-
-    cards.forEach(card => {
-        observer.observe(card);
-    });
-
-    // Keep existing metrics counter animation
-    const metrics = document.querySelectorAll('.syed-metric-value');
-    metrics.forEach(metric => {
-        const value = parseFloat(metric.textContent);
-        let current = 0;
-        const increment = value / 50;
-        const updateCount = () => {
-            if (current < value) {
-                current += increment;
-                metric.textContent = current.toFixed(1) + (metric.textContent.includes('M') ? 'M' : '%');
-                requestAnimationFrame(updateCount);
-            } else {
-                metric.textContent = value.toFixed(1) + (metric.textContent.includes('M') ? 'M' : '%');
-            }
+    // Enhanced scroll animation
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
         };
-        updateCount();
-    });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                    // Trigger chart animation when visible
+                    const chartId = entry.target.querySelector('canvas')?.id;
+                    if (chartId && charts[chartId.replace('syed', '').toLowerCase()]) {
+                        charts[chartId.replace('syed', '').toLowerCase()].update();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-aos]').forEach(card => {
+            observer.observe(card);
+        });
+    }
+
+    // Enhanced metrics animation
+    function animateMetrics() {
+        document.querySelectorAll('.syed-metric-value').forEach(metric => {
+            const value = parseFloat(metric.textContent);
+            if (isNaN(value)) return;
+
+            let current = 0;
+            const duration = 2000;
+            const steps = 60;
+            const increment = value / steps;
+            const interval = duration / steps;
+            const suffix = metric.textContent.includes('M') ? 'M' : '%';
+
+            const animation = setInterval(() => {
+                current += increment;
+                if (current >= value) {
+                    clearInterval(animation);
+                    current = value;
+                }
+                metric.textContent = current.toFixed(1) + suffix;
+            }, interval);
+        });
+    }
+
+    // Start all animations
+    startAutoUpdate();
+    animateMetrics();
 });

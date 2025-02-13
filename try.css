@@ -1,0 +1,94 @@
+// Wait for DOM content to be loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the marketing chart canvas exists
+    const marketingCanvas = document.getElementById('syedMarketingChart');
+    if (!marketingCanvas) {
+        console.error('Marketing chart canvas not found');
+        return;
+    }
+
+    // Initialize the marketing chart
+    const marketingCtx = marketingCanvas.getContext('2d');
+    
+    // Shared chart configuration
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(0, 0, 0, 0.1)'
+                }
+            },
+            x: {
+                grid: {
+                    display: false
+                }
+            }
+        },
+        animation: {
+            duration: 2000,
+            easing: 'easeInOutQuart'
+        }
+    };
+
+    // Create the marketing chart
+    const marketingChart = new Chart(marketingCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Conversions',
+                data: [45, 55, 65, 78, 82, 88],
+                backgroundColor: '#00ff9d',
+                borderRadius: 5
+            }]
+        },
+        options: commonOptions
+    });
+
+    // Function to generate new data
+    function generateNewData() {
+        return marketingChart.data.datasets[0].data.map(value => {
+            const change = (Math.random() - 0.5) * 10;
+            return Math.max(0, Math.min(100, value + change));
+        });
+    }
+
+    // Update chart periodically
+    setInterval(() => {
+        marketingChart.data.datasets[0].data = generateNewData();
+        marketingChart.update('active');
+    }, 3000);
+
+    // Animate metrics
+    const metrics = document.querySelectorAll('.syed-metric-value');
+    metrics.forEach(metric => {
+        const finalValue = parseFloat(metric.textContent);
+        let currentValue = 0;
+        const duration = 2000; // 2 seconds
+        const steps = 60;
+        const increment = finalValue / steps;
+        const interval = duration / steps;
+        const suffix = metric.textContent.includes('M') ? 'M' : '%';
+
+        const animation = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= finalValue) {
+                clearInterval(animation);
+                currentValue = finalValue;
+            }
+            metric.textContent = currentValue.toFixed(1) + suffix;
+        }, interval);
+    });
+});

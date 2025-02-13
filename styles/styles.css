@@ -1464,6 +1464,7 @@ footer {
   text-align: left;
   align-items: flex-start;
   margin: 10px 0px 10px 0px;
+
 }
 #dh2, #dh3, #dh4{
   color: #333333;
@@ -1480,9 +1481,11 @@ footer {
   margin-bottom: -10px;
 }
 .company-info p {
+  margin-bottom: 0rem;
   font-size: 12px;
   line-height: 1.6;
   color: #666666;
+  text-align: left;
 }
 #dh1{
   margin-bottom: 30px;
@@ -1521,6 +1524,7 @@ footer {
   margin: 5px 5px;
   margin-bottom: 15px;
   line-height: 2;
+  text-align: left;
 }
 
 .map2 iframe {
@@ -1561,7 +1565,53 @@ footer {
   color: white; /* Hover effect */
 }
 
+/*  drop down */
+/* DROPDOWN TRANSITION */
+.nav-links li {
+  position: relative;
+}
 
+/* Dropdown container */
+.r-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  opacity: 0;
+}
+/* Dropdown items */
+.r-dropdown-content a {
+  padding: 10px;
+  display: block;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: dropdownFade 0.3s ease-in-out forwards;
+}
+/* Keyframes for smooth dropdown effect */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Apply animation delay for each dropdown item */
+.r-dropdown-content a:nth-child(1) { animation-delay: 0.4s; }
+.r-dropdown-content a:nth-child(2) { animation-delay: 0.6s; }
+.r-dropdown-content a:nth-child(3) { animation-delay: 0.8s; }
+.r-dropdown-content a:nth-child(4) { animation-delay: 1s; }
+.r-dropdown-content a:nth-child(5) { animation-delay: 1.2s; }
+
+/* Show dropdown with animation */
+.r-dropdown:hover .r-dropdown-content {
+  display: block;
+  opacity: 1;
+}
 
 
 

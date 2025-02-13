@@ -8,14 +8,7 @@
   width: 100%;
   overflow-x: hidden;
 }
-.r-header {
-  text-align: center;
-  background-color: rgb(242, 247, 246);
-}
-.r-header h1 {
-  color: hsl(166, 100%, 42%);
-  font-size: 60px;
-}
+
 .r-hero {
   display: flex;
   flex-direction: row;
@@ -273,6 +266,7 @@
   font-size: 16px;
   margin-left: 50px;
   margin-top: 0px;
+  text-align: left;
 }
 .r-member-opinion {
   color: white;
