@@ -371,6 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// web design 
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('syedWebDesignChart');
     if (!canvas) {
