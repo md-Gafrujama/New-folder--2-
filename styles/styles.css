@@ -891,6 +891,7 @@
     }
 
     #kazim.navbar {
+        top: 70px;
         flex-direction: row;
     }
 
