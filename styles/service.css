@@ -235,6 +235,7 @@
 /* Touch Device Optimizations */
 @media (hover: none) {
   .syed-service-description:active,
+
   .syed-service-content:active {
     transform: scale(0.98);
   }
@@ -243,3 +244,122 @@
     transform: scale(0.95);
   }
 }
+/* Previous CSS remains the same until .syed-graph-container */
+
+.syed-graph-container {
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  max-height: 400px;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
+  overflow-x: auto;  /* Enable horizontal scroll if needed */
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Add specific styling for the graph content */
+.syed-graph-content {
+  min-width: 100%;
+  height: 100%;
+  padding: 1rem 0;
+}
+
+/* Ensure the graph container maintains aspect ratio */
+.syed-graph-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+}
+
+.syed-graph-wrapper > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive styles for different screen sizes */
+@media (max-width: 480px) {
+  .syed-graph-container {
+    min-height: 180px;
+    margin: 0.5rem -1rem; /* Negative margin to allow full-width scrolling */
+    padding: 0 1rem;
+  }
+  
+  .syed-graph-content {
+    min-width: 480px; /* Minimum width to ensure readability */
+  }
+  
+  /* Adjust the wrapper for better mobile viewing */
+  .syed-graph-wrapper {
+    padding-bottom: 75%; /* 4:3 Aspect Ratio for mobile */
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .syed-graph-container {
+    min-height: 220px;
+  }
+  
+  .syed-graph-content {
+    min-width: 600px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .syed-graph-container {
+    min-height: 280px;
+  }
+  
+  .syed-graph-content {
+    min-width: 720px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .syed-graph-container {
+    min-height: 320px;
+  }
+  
+  .syed-graph-content {
+    min-width: 900px;
+  }
+}
+
+/* Custom scrollbar for better visual appearance */
+.syed-graph-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.syed-graph-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.syed-graph-container::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 3px;
+}
+
+.syed-graph-container::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Touch device optimizations for graph */
+@media (hover: none) {
+  .syed-graph-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .syed-graph-content {
+    scroll-snap-align: start;
+  }
+}
+
+/* Rest of the previous CSS remains the same */
