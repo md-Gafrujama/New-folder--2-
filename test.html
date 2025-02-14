@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions</title>
-    <!-- Chart.js CDN -->
+    <title>Web Development Solutions</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
+   <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/about.css">
     <link rel="stylesheet" href="styles/service.css">
-    <link rel="stylesheet" href="styles/solution.css">
 </head>
 <body>
 
     <footer id="footer">
         <div id="contact">
-            <i class="fa fa-phone"></i>
-            <span>(+91)6205878945 </span>
         </div>
         <div id="social-icons">
-            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Linkdin"><i class="fab fa-linkedin"></i></a>
         </div>
     </footer>
     
     <nav id="kazim" class="navbar">
         <div class="nav-left">
             <a href="#" class="logo">
-                <img src="image/ICON.jpg" alt="gafru" class="logo-circle" />
-                <img src="image/QUORE.png" alt="gafru" class="gafru-circle" />
+                <img src="../image/ICON.jpg" alt="gafru" class="logo-circle" />
+                <img src="../image/QUORE.png" alt="gafru" class="gafru-circle" />
             </a>
         </div>
   
@@ -41,10 +38,10 @@
         </div>
   
         <div class="nav-links" id="navLinks">
-            <a href="index.html">HOME</a>
-            <a href="about.html">ABOUT</a>
+            <a href="../index.html">HOME</a>
+            <a href="../about.html">ABOUT</a>
             <li class="r-dropdown">
-                <a href="service.html">SERVICE</a>
+                <a href="../service.html">SERVICE</a>
                 <div class="r-dropdown-content">
                     <a href="/pages/displayAdvertisement.html">Display Advertisement</a>
                     <a href="/pages/Account-Based Marketing.html">Account-Based Marketing</a>
@@ -54,7 +51,7 @@
                 </div>
             </li>
             <li class="r-dropdown">
-                <a href="solutions.html">SOLUTION</a>
+                <a href="../solutions.html">SOLUTION</a>
                 <div class="r-dropdown-content">
                     <a href="/pages/sol1.html">Sol1</a>
                     <a href="/pages/sol2.html">Sol2</a>
@@ -63,13 +60,11 @@
                     <a href="/pages/sol5.html">Sol5</a>
                 </div>
             </li>
-            <a href='contact.html'>CONTACT</a>
+            <a href='../contact.html'>CONTACT</a>
         </div>
   
         <button class="nav-button">Get Started</button>
     </nav>
-  
-
 
     <section id="unique-services-section">
         <h2 class="section-title">Solutions</h2>
@@ -90,243 +85,67 @@
                 </div>
             </div>
         </div>
+</section>
 
-
-
-    </section>
-    <section class="services">
-      <div class="services-header">
-        <h2 class="services-title">
-          We Are Here To<br />
-          Make Your <span>Website</span><br />
-          Look More <span>Elegant</span><br />
-          And Stylish!
-        </h2>
-        <a href="#" class="view-all-btn">View all</a>
-      </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <svg
-            class="service-icon"
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>  
-          <h3>Display Advertisement</h3>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia there live...
-          </p>
-        </div>
-        <div class="service-card">
-          <svg
-            class="service-icon"
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-          <h3>Account-Based Marketing</h3>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia there live...
-          </p>
-        </div>
-        <div class="service-card">
-          <svg
-            class="service-icon"
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M4 21v-7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            <path d="M8 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-          <h3>Lead Generation</h3>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia there live...
-          </p>
-        </div>
-        <div class="service-card">
-          <svg
-            class="service-icon"
-            width="50"
-            height="50"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M12 20h9" />
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-          </svg>
-          <h3>Data Solutions</h3>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia there live...
-          </p>
-        </div>
-      </div>
-    </section>
 
     <section class="syed-services">
-        <div class="syed-services-header">
-            <h2 class="syed-services-title">
-                We Are Here To<br>
-                Make Your <span>Website</span><br>
-                Look More <span>Elegant</span><br>
-                And Stylish!
-            </h2>
-            <a href="#" class="syed-view-all-btn">View all</a>
-        </div>
-
         <div class="syed-services-grid">
-            <!-- Advertisement Service -->
+            <!-- web development -->
             <div class="syed-service-container" data-aos="fade-up">
                 <div class="syed-service-description">
                     <div class="syed-service-header">
                         <svg class="syed-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+                            <path d="M2 8h20"/>
+                            <path d="M6 6h.01"/>
+                            <path d="M10 6h.01"/>
                         </svg>
-                        <h3>Display Advertisement</h3>
+                        <h3>Web Design & Development</h3>
                     </div>
-                    <p>Strategic digital advertising solutions to maximize your reach and engagement. Our team specializes in creating targeted ad campaigns that drive results. Whether you're looking to increase brand awareness or generate leads, we have the expertise to help you succeed.</p>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOjt3tizjKpkDvqOgmojyAfwgdHAPA9xTGRw&s" alt="Advertisement" class="syed-service-image">
+                    <p>Crafting stunning, responsive websites that captivate your audience. Our expert team combines modern design principles with cutting-edge technologies to deliver seamless user experiences. From custom animations to mobile-first designs, we bring your digital vision to life.</p>
+                    <div class="syed-service-image">
+                        <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="100" y="100" width="600" height="400" rx="20" fill="#00ff99" />
+                            <rect x="120" y="120" width="560" height="340" rx="10" fill="white" />
+                            <path d="M350 500 L450 500 L420 550 L380 550 Z" fill="#00ff99" />
+                            <rect x="140" y="140" width="520" height="60" rx="5" fill="#f3f4f6" />
+                            <circle cx="180" cy="170" r="15" fill="#66ff99" />
+                            <rect x="400" y="160" width="220" height="20" rx="5" fill="#e5e7eb" />
+                            <rect x="140" y="220" width="120" height="220" rx="5" fill="#f3f4f6" />
+                            <rect x="155" y="240" width="90" height="10" rx="2" fill="#e5e7eb" />
+                            <rect x="155" y="260" width="90" height="10" rx="2" fill="#e5e7eb" />
+                            <rect x="155" y="280" width="90" height="10" rx="2" fill="#e5e7eb" />
+                            <rect x="280" y="220" width="380" height="100" rx="5" fill="#f3f4f6" />
+                            <rect x="300" y="240" width="340" height="60" rx="2" fill="#e5e7eb" />
+                            <rect x="280" y="340" width="180" height="100" rx="5" fill="#f3f4f6" />
+                            <rect x="480" y="340" width="180" height="100" rx="5" fill="#f3f4f6" />
+                            <circle cx="340" cy="390" r="20" fill="#66ff99" opacity="0.5" />
+                            <circle cx="540" cy="390" r="20" fill="#66ff99" opacity="0.5" />
+                            <rect x="155" y="320" width="60" height="8" rx="2" fill="#66ff99" opacity="0.7" />
+                            <rect x="155" y="340" width="90" height="8" rx="2" fill="#66ff99" opacity="0.5" />
+                            <rect x="155" y="360" width="75" height="8" rx="2" fill="#66ff99" opacity="0.3" />
+                        </svg>
+                    </div>
                 </div>
                 <div class="syed-service-content">
                     <div class="syed-graph-container">
-                        <canvas id="syedAdvertisingChart"></canvas>
+                        <canvas id="syedWebDesignChart"></canvas>
                     </div>
                     <div class="syed-metrics">
                         <div class="syed-metric">
-                            <span class="syed-metric-value">85%</span>
-                            <span class="syed-metric-label">Success Rate</span>
+                            <span class="syed-metric-value">98%</span>
+                            <span class="syed-metric-label">Mobile Responsive</span>
                         </div>
                         <div class="syed-metric">
-                            <span class="syed-metric-value">2.5M</span>
-                            <span class="syed-metric-label">Impressions</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Marketing Service -->
-            <div class="syed-service-container" data-aos="fade-up" data-aos-delay="100">
-                <div class="syed-service-description">
-                    <div class="syed-service-header">
-                        <svg class="syed-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                        <h3>Account-Based Marketing</h3>
-                    </div>
-                    <p>Targeted marketing strategies focused on high-value accounts and personalization. Our account-based marketing approach ensures that your message reaches the right decision-makers at the right time, driving higher conversion rates and ROI.</p>
-                    <img src="https://business.adobe.com/blog/basics/media_1a433979870efe989492c276e136f7b39d5a2cc78.png?width=2000&format=webply&optimize=medium" alt="Marketing" class="syed-service-image">
-                </div>
-                <div class="syed-service-content">
-                    <div class="syed-graph-container">
-                        <canvas id="syedMarketingChart"></canvas>
-                    </div>
-                    <div class="syed-metrics">
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">92%</span>
-                            <span class="syed-metric-label">Conversion</span>
-                        </div>
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">1.8M</span>
-                            <span class="syed-metric-label">Leads</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lead Generation -->
-            <div class="syed-service-container" data-aos="fade-up" data-aos-delay="200">
-                <div class="syed-service-description">
-                    <div class="syed-service-header">
-                        <svg class="syed-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 21v-7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            <path d="M8 3.13a4 4 0 0 1 0 7.75" />
-                        </svg>
-                        <h3>Lead Generation</h3>
-                    </div>
-                    <p>Comprehensive lead generation solutions to drive business growth. We use a combination of inbound and outbound strategies to attract and convert high-quality leads, ensuring a steady pipeline of potential customers for your business.</p>
-                    <img src="https://www.shutterstock.com/image-illustration/lead-generation-finding-identifying-customers-260nw-2460794097.jpg" alt="Lead Generation" class="syed-service-image">
-                </div>
-                <div class="syed-service-content">
-                    <div class="syed-graph-container">
-                        <canvas id="syedLeadsChart"></canvas>
-                    </div>
-                    <div class="syed-metrics">
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">78%</span>
-                            <span class="syed-metric-label">Quality</span>
-                        </div>
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">3.2M</span>
-                            <span class="syed-metric-label">Contacts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Data Solutions -->
-            <div class="syed-service-container" data-aos="fade-up" data-aos-delay="300">
-                <div class="syed-service-description">
-                    <div class="syed-service-header">
-                        <svg class="syed-service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 20h9" />
-                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-                        </svg>
-                        <h3>Data Solutions</h3>
-                    </div>
-                    <p>Advanced data analytics and insights to power your decision making. Our data solutions provide you with actionable insights, helping you make informed decisions that drive business growth and improve operational efficiency.</p>
-                    <img src="https://s3.easternpeak.com/wp-content/uploads/2020/12/shutterstock_1134240221-1-1.jpg" alt="Data Solutions" class="syed-service-image">
-                </div>
-                <div class="syed-service-content">
-                    <div class="syed-graph-container">
-                        <canvas id="syedDataChart"></canvas>
-                    </div>
-                    <div class="syed-metrics">
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">95%</span>
-                            <span class="syed-metric-label">Accuracy</span>
-                        </div>
-                        <div class="syed-metric">
-                            <span class="syed-metric-value">4.5M</span>
-                            <span class="syed-metric-label">Records</span>
+                            <span class="syed-metric-value">250+</span>
+                            <span class="syed-metric-label">Projects Delivered</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
+    
     <section class="client-section">
         <h2 class="section-title">Clients</h2>
         <p class="subtitle">Our Learners Work at Global Companies & Startups</p>
@@ -421,7 +240,7 @@
                 </div>
                 <p>Patricia C. Amedee 4401 Waldeck Street Grapevine Nashville, TX 76051</p>
                 <p>Email: info@yourdomain.com</p>
-                <p>Phone: +1 (987) 654-3210</p>
+                <p>Phone: +1 (987) 654-3210</p> 
             </div>
     
             <!-- Google Map -->
@@ -450,19 +269,114 @@
       <div id="footer-bottom">
         <div class="dcopy">&copy; 2025 PHLOX BUSINESS THEME</div>
         <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="https://www.twitter.com" target="_blank"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="https://www.pinterest.com" target="_blank"
-            ><i class="fab fa-pinterest-p"></i
-          ></a>
+            <a href="#" title="Linkdin"><i class="fab fa-linkedin"></i></a>
         </div>
         </div>
-    
-       <script src="script.js"></script>
-       <script src="script1.js"></script>
+      <script>
+        // Initialize the chart when the document is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make sure the canvas exists before trying to get its context
+            const canvas = document.getElementById('syedWebDesignChart');
+            if (!canvas) {
+                console.error('Chart canvas element not found');
+                return;
+            }
+        
+            const ctx = canvas.getContext('2d');
+            
+            // Create chart configuration
+            const chartConfig = {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Projects Completed',
+                        data: [15, 22, 28, 35, 42, 48],
+                        borderColor: '#2563eb',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)'
+                    }, {
+                        label: 'Client Satisfaction',
+                        data: [95, 96, 94, 98, 97, 99],
+                        borderColor: '#10b981',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Add this to ensure proper sizing
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Web Design Performance Metrics'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            };
+        
+            // Create the chart
+            try {
+                new Chart(ctx, chartConfig);
+            } catch (error) {
+                console.error('Error creating chart:', error);
+            }
+        
+            // Metrics animation code remains the same
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.syed-metric-value').forEach(metric => {
+                            const target = metric.innerText;
+                            const duration = 2000;
+                            const startTime = performance.now();
+                            
+                            function updateValue(currentTime) {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                
+                                if (target.includes('%')) {
+                                    const value = Math.floor(progress * parseInt(target));
+                                    metric.innerText = `${value}%`;
+                                } else if (target.includes('M')) {
+                                    const value = (progress * parseFloat(target)).toFixed(1);
+                                    metric.innerText = `${value}M`;
+                                } else if (target.includes('+')) {
+                                    const value = Math.floor(progress * parseInt(target));
+                                    metric.innerText = `${value}+`;
+                                }
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateValue);
+                                }
+                            }
+                            
+                            requestAnimationFrame(updateValue);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+        
+            document.querySelectorAll('.syed-service-container').forEach(container => {
+                observer.observe(container);
+            });
+        });
+    </script>
+     <script src="../script.js"></script>
+     <script src="../script1.js"></script>
 </body>
 </html>

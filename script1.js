@@ -369,3 +369,108 @@ document.addEventListener('DOMContentLoaded', function() {
     startAutoUpdate();
     animateMetrics();
 });
+
+
+// WEB DEV SCRIPT 
+// Initialize the chart when the document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Make sure the canvas exists before trying to get its context
+    const canvas = document.getElementById('syedWebDesignChart');
+    if (!canvas) {
+        console.error('Chart canvas element not found');
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    
+    // Create chart configuration
+    const chartConfig = {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Projects Completed',
+                data: [15, 22, 28, 35, 42, 48],
+                borderColor: '#2563eb',
+                tension: 0.4,
+                fill: true,
+                backgroundColor: 'rgba(37, 99, 235, 0.1)'
+            }, {
+                label: 'Client Satisfaction',
+                data: [95, 96, 94, 98, 97, 99],
+                borderColor: '#10b981',
+                tension: 0.4,
+                fill: true,
+                backgroundColor: 'rgba(16, 185, 129, 0.1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Add this to ensure proper sizing
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Web Design Performance Metrics'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart'
+            }
+        }
+    };
+
+    // Create the chart
+    try {
+        new Chart(ctx, chartConfig);
+    } catch (error) {
+        console.error('Error creating chart:', error);
+    }
+
+    // Metrics animation code remains the same
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.syed-metric-value').forEach(metric => {
+                    const target = metric.innerText;
+                    const duration = 2000;
+                    const startTime = performance.now();
+                    
+                    function updateValue(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        if (target.includes('%')) {
+                            const value = Math.floor(progress * parseInt(target));
+                            metric.innerText = `${value}%`;
+                        } else if (target.includes('M')) {
+                            const value = (progress * parseFloat(target)).toFixed(1);
+                            metric.innerText = `${value}M`;
+                        } else if (target.includes('+')) {
+                            const value = Math.floor(progress * parseInt(target));
+                            metric.innerText = `${value}+`;
+                        }
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateValue);
+                        }
+                    }
+                    
+                    requestAnimationFrame(updateValue);
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.syed-service-container').forEach(container => {
+        observer.observe(container);
+    });
+});

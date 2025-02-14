@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #00ff9d;
+  --secondary-color: #00cc7a;
+  --text-color: #1f2937;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --hover-scale: 1.03;
+  --transition-speed: 0.4s;
+}
+
 /* Base styles and Reset */
 * {
   margin: 0;
@@ -48,16 +58,19 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #007bff, #00bcd4);
+  background: linear-gradient(to right, #00d4a7, #6eff79);
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
+  color: white;
 }
 
 .sahidu-card > * {
   position: relative;
   z-index: 2;
   margin-bottom: 2rem;
+ color: rgb(78, 66, 66);
+ 
 }
 
 /* Hover effects */
@@ -73,7 +86,7 @@
 /* Service Icon Styles */
 .sahidu-icon {
   margin-bottom: 2.5rem;
-  stroke: #007bff;
+  stroke: #00ff9d;
   transition: all 0.4s ease;
   width: 80px;
   height: 80px;
