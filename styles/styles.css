@@ -891,7 +891,6 @@
     }
 
     #kazim.navbar {
-        top: 70px; /* Adjusted for taller footer */
         flex-direction: row;
     }
 
