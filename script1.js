@@ -371,10 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// WEB DEV SCRIPT 
-// Initialize the chart when the document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Make sure the canvas exists before trying to get its context
     const canvas = document.getElementById('syedWebDesignChart');
     if (!canvas) {
         console.error('Chart canvas element not found');
@@ -382,22 +379,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const ctx = canvas.getContext('2d');
-    
-    // Create chart configuration
+    let chart;
+
+    // Function to generate random data
+    function generateRandomData(min, max, length) {
+        return Array.from({ length }, () => 
+            Math.floor(Math.random() * (max - min + 1)) + min
+        );
+    }
+
+    // Function to update chart data
+    function updateChartData() {
+        const projectsData = generateRandomData(15, 50, 6);
+        const satisfactionData = generateRandomData(90, 100, 6);
+
+        chart.data.datasets[0].data = projectsData;
+        chart.data.datasets[1].data = satisfactionData;
+        chart.update('none'); // Update without animation for smooth transition
+    }
+
+    // Function to add new data point
+    function addNewDataPoint() {
+        const labels = chart.data.labels;
+        const currentMonth = new Date().getMonth();
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        // Remove first data point and label
+        chart.data.labels.shift();
+        chart.data.datasets.forEach(dataset => dataset.data.shift());
+
+        // Add new data point
+        chart.data.labels.push(months[(currentMonth + 1) % 12]);
+        chart.data.datasets[0].data.push(Math.floor(Math.random() * (50 - 15 + 1)) + 15);
+        chart.data.datasets[1].data.push(Math.floor(Math.random() * (100 - 90 + 1)) + 90);
+
+        chart.update('none');
+    }
+
+    // Create initial chart configuration
     const chartConfig = {
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [{
                 label: 'Projects Completed',
-                data: [15, 22, 28, 35, 42, 48],
+                data: generateRandomData(15, 50, 6),
                 borderColor: '#2563eb',
                 tension: 0.4,
                 fill: true,
                 backgroundColor: 'rgba(37, 99, 235, 0.1)'
             }, {
                 label: 'Client Satisfaction',
-                data: [95, 96, 94, 98, 97, 99],
+                data: generateRandomData(90, 100, 6),
                 borderColor: '#10b981',
                 tension: 0.4,
                 fill: true,
@@ -406,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Add this to ensure proper sizing
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'top',
@@ -418,59 +451,91 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + (this.chart.data.datasets[1].data.includes(value) ? '%' : '');
+                        }
+                    }
                 }
             },
             animation: {
-                duration: 2000,
+                duration: 750,
                 easing: 'easeInOutQuart'
+            },
+            transitions: {
+                active: {
+                    animation: {
+                        duration: 300
+                    }
+                }
             }
         }
     };
 
     // Create the chart
     try {
-        new Chart(ctx, chartConfig);
+        chart = new Chart(ctx, chartConfig);
     } catch (error) {
         console.error('Error creating chart:', error);
+        return;
     }
 
-    // Metrics animation code remains the same
+    // Add hover effects for interactivity
+    canvas.addEventListener('mousemove', (event) => {
+        const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
+        if (points.length) {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+    });
+
+    // Metrics animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.querySelectorAll('.syed-metric-value').forEach(metric => {
-                    const target = metric.innerText;
-                    const duration = 2000;
-                    const startTime = performance.now();
-                    
-                    function updateValue(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        if (target.includes('%')) {
-                            const value = Math.floor(progress * parseInt(target));
-                            metric.innerText = `${value}%`;
-                        } else if (target.includes('M')) {
-                            const value = (progress * parseFloat(target)).toFixed(1);
-                            metric.innerText = `${value}M`;
-                        } else if (target.includes('+')) {
-                            const value = Math.floor(progress * parseInt(target));
-                            metric.innerText = `${value}+`;
-                        }
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(updateValue);
-                        }
-                    }
-                    
-                    requestAnimationFrame(updateValue);
+                    animateMetric(metric);
                 });
             }
         });
     }, { threshold: 0.5 });
 
+    function animateMetric(metric) {
+        const target = metric.innerText;
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function updateValue(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            if (target.includes('%')) {
+                const value = Math.floor(progress * parseInt(target));
+                metric.innerText = `${value}%`;
+            } else if (target.includes('M')) {
+                const value = (progress * parseFloat(target)).toFixed(1);
+                metric.innerText = `${value}M`;
+            } else if (target.includes('+')) {
+                const value = Math.floor(progress * parseInt(target));
+                metric.innerText = `${value}+`;
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(updateValue);
+            }
+        }
+
+        requestAnimationFrame(updateValue);
+    }
+
+    // Observe metric containers
     document.querySelectorAll('.syed-service-container').forEach(container => {
         observer.observe(container);
     });
+
+    // Set up automatic data updates
+    setInterval(addNewDataPoint, 5000); // Add new data point every 5 seconds
+    setInterval(updateChartData, 30000); // Refresh all data every 30 seconds
 });
