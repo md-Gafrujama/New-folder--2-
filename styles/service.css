@@ -1,10 +1,11 @@
-/* solutions */
 :root {
   --primary-color: #00ff9d;
   --secondary-color: #00cc7a;
   --text-color: #1f2937;
   --bg-color: #f3f4f6;
   --card-bg: #ffffff;
+  --hover-scale: 1.03;
+  --transition-speed: 0.4s;
 }
 
 * {
@@ -13,94 +14,106 @@
   box-sizing: border-box;
 }
 
-
 .syed-services {
-  max-width: 1200px;
+  max-width: 1400px;  /* Increased from 1200px */
   margin: 0 auto;
-  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3rem);  /* Increased padding */
 }
 
 .syed-services-header {
   text-align: center;
-  margin-bottom: clamp(2rem, 6vw, 4rem);
+  margin-bottom: clamp(3rem, 7vw, 5rem);  /* Increased margin */
   transform: translateY(0);
-  transition: transform 0.3s ease;
-  padding: 0 clamp(1rem, 3vw, 2rem);
+  transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
 }
 
 .syed-services-header:hover {
-  transform: translateY(-10px);
+  transform: translateY(-15px);  /* Increased movement */
 }
 
 .syed-services-title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
-  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);  /* Increased font sizes */
+  font-weight: 800;  /* Made bolder */
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
   line-height: 1.2;
 }
 
 .syed-services-title span {
   color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+  transition: color var(--transition-speed) ease;
+}
+
+.syed-services-title span:hover {
+  color: var(--secondary-color);
+  transform: scale(1.1);
 }
 
 .syed-view-all-btn {
   display: inline-block;
-  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1.5rem, 4vw, 2rem);
+  padding: clamp(0.75rem, 2.5vw, 1rem) clamp(2rem, 5vw, 3rem);  /* Larger padding */
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
   border-radius: 9999px;
-  transition: all 0.3s ease;
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);  /* Larger font */
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .syed-view-all-btn:hover {
   background-color: var(--secondary-color);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .syed-services-grid {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 6vw, 4rem);
+  gap: clamp(3rem, 7vw, 5rem);  /* Increased gap */
 }
 
 .syed-service-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
+  gap: clamp(1.5rem, 4vw, 3rem);  /* Increased gap */
 }
 
 @media (min-width: 768px) {
   .syed-service-container {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .syed-service-description,
 .syed-service-content {
   background-color: var(--card-bg);
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 1.5rem;  /* Increased radius */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
+  transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
   aspect-ratio: 4/5;
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 .syed-service-description {
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(2rem, 5vw, 3rem);  /* Increased padding */
 }
 
 .syed-service-content {
-  padding: clamp(1.5rem, 4vw, 2rem);
+  padding: clamp(2rem, 5vw, 3rem);
 }
 
 .syed-service-description:hover,
 .syed-service-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(var(--hover-scale));
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 .syed-service-content:hover {
@@ -110,27 +123,32 @@
 .syed-service-header {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 3vw, 1.5rem);
-  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  gap: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 .syed-service-icon {
-  width: clamp(40px, 8vw, 56px);
-  height: clamp(40px, 8vw, 56px);
+  width: clamp(48px, 10vw, 72px);  /* Larger icons */
+  height: clamp(48px, 10vw, 72px);
   color: var(--primary-color);
   flex-shrink: 0;
+  transition: transform var(--transition-speed) ease;
+}
+
+.syed-service-icon:hover {
+  transform: rotate(10deg) scale(1.1);
 }
 
 .syed-service-description h3 {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 600;
-  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);  /* Larger headings */
+  font-weight: 700;
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 .syed-service-description p {
   color: #4b5563;
   margin-bottom: auto;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);  /* Larger text */
   line-height: 1.8;
 }
 
@@ -138,94 +156,90 @@
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: clamp(1.5rem, 4vw, 2rem);
-  transition: transform 0.3s ease;
+  border-radius: 1rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .syed-service-image:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .syed-graph-container {
   flex-grow: 1;
-  min-height: 200px;
-  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  min-height: 250px;  /* Increased height */
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
   position: relative;
 }
 
 .syed-metrics {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding-top: clamp(1rem, 3vw, 1.5rem);
-  border-top: 2px solid #e5e7eb;
+  gap: 1.5rem;
+  padding-top: clamp(1.5rem, 4vw, 2rem);
+  border-top: 3px solid #e5e7eb;  /* Thicker border */
   margin-top: auto;
 }
 
 .syed-metric {
   text-align: center;
-  padding: clamp(0.75rem, 2vw, 1rem);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  transition: transform var(--transition-speed) ease;
+}
+
+.syed-metric:hover {
+  transform: scale(1.05);
 }
 
 .syed-metric-value {
   display: block;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);  /* Larger values */
+  font-weight: 800;
   color: var(--primary-color);
 }
 
 .syed-metric-label {
-  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);  /* Larger labels */
   color: #6b7280;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
-/* Specific height adjustments for small screens */
+/* Responsive adjustments */
 @media (max-width: 480px) {
   .syed-service-description,
   .syed-service-content {
-      aspect-ratio: auto;
-      min-height: 500px;
+    aspect-ratio: auto;
+    min-height: 550px;  /* Increased height */
   }
 
   .syed-graph-container {
-      min-height: 150px;
-  }
-
-  .syed-metrics {
-      grid-template-columns: repeat(2, 1fr);
+    min-height: 200px;
   }
 }
 
-/* Medium screens */
 @media (min-width: 481px) and (max-width: 767px) {
   .syed-service-description,
   .syed-service-content {
-      aspect-ratio: auto;
-      min-height: 550px;
+    aspect-ratio: auto;
+    min-height: 600px;  /* Increased height */
   }
 }
 
-/* Larger screens */
 @media (min-width: 768px) {
   .syed-service-description,
   .syed-service-content {
-      height: 600px;
+    height: 700px;  /* Increased height */
   }
 }
 
 /* Touch Device Optimizations */
 @media (hover: none) {
-  .syed-service-description:hover,
-  .syed-service-content:hover,
-  .syed-service-image:hover {
-      transform: none;
+  .syed-service-description:active,
+  .syed-service-content:active {
+    transform: scale(0.98);
   }
   
-  .syed-services-header:hover {
-      transform: none;
+  .syed-view-all-btn:active {
+    transform: scale(0.95);
   }
 }
-
-
