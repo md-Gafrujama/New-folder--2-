@@ -540,3 +540,55 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(addNewDataPoint, 5000); // Add new data point every 5 seconds
     setInterval(updateChartData, 30000); // Refresh all data every 30 seconds
 });
+
+
+// aarow buton 
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollUpBtn = document.getElementById("scroll-up-btn");
+    const scrollDownBtn = document.getElementById("scroll-down-btn");
+    const navbar = document.querySelector(".navbar"); 
+    const footer = document.getElementById("footer-bottom");
+
+    if (!scrollUpBtn || !scrollDownBtn || !navbar || !footer) {
+        console.error("Error: Required elements not found!");
+        return;
+    }
+
+    console.log("Scroll buttons and elements found!");
+    scrollUpBtn.addEventListener("click", function () {
+        console.log("Scrolling to the top...");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setTimeout(function () {
+            location.reload();
+        }, 500); 
+    });
+
+    scrollDownBtn.addEventListener("click", function () {
+        console.log("Scrolling to the bottom (footer)...");
+        footer.scrollIntoView({ behavior: "smooth" });
+    });
+
+    function updateButtonVisibility() {
+        const scrollPosition = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+
+        console.log("Scroll Position:", scrollPosition);
+        console.log("Document Height:", documentHeight);
+        console.log("Window Height:", windowHeight);
+
+        if (scrollPosition + windowHeight >= documentHeight - 100) {
+            scrollDownBtn.style.display = "none";
+            scrollUpBtn.style.display = "block";
+        } else if (scrollPosition > 100) {
+            scrollUpBtn.style.display = "block";
+            scrollDownBtn.style.display = "block";
+        } else {
+            scrollUpBtn.style.display = "none";
+            scrollDownBtn.style.display = "block";
+        }
+    }
+    window.addEventListener("scroll", updateButtonVisibility);
+    updateButtonVisibility();
+});
