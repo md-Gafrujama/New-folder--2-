@@ -318,6 +318,11 @@ display: flex;
   gap: 30px;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .card1, .card2{
+    flex-direction: column;
+}
+}
 .webd{
 flex:1;
 }
