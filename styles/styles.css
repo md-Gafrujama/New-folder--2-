@@ -1522,7 +1522,6 @@ h1 span {
 
 @media (max-width: 400px){
   #box-light, #box-dark{
-      padding:0px;
       width: 120%;
   }
 }
@@ -1590,19 +1589,6 @@ h1 span {
   display: block;
   opacity: 1;
 }
-
-/* .disha {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-} */
-
-
-/* arrow */
-/* html,body{
-  overflow-x: hidden; 
-  overflow: auto; 
-} */
 
 .arrow-buttons{
       position: fixed;
