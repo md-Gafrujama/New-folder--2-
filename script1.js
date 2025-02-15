@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// graph for chart and other graph visulaztion
+// graph for chart and other graph visulaztion for service
 
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof Chart === 'undefined') {
